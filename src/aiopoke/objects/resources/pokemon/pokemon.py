@@ -31,6 +31,7 @@ if TYPE_CHECKING:
 class Pokemon(NamedResource):
     abilities: List["PokemonAbility"]
     base_experience: int
+    cries: Dict[str, str]
     forms: List[MinimalResource["PokemonForm"]]
     game_indices: List["VersionGameIndex"]
     held_items: List["PokemonHeldItem"]
@@ -54,6 +55,7 @@ class Pokemon(NamedResource):
         name: str,
         abilities: List[Dict[str, Any]],
         base_experience: int,
+        cries: Dict[str, str],
         forms: List[Dict[str, Any]],
         game_indices: List[Dict[str, Any]],
         height: int,
@@ -73,6 +75,7 @@ class Pokemon(NamedResource):
         super().__init__(id=id, name=name)
         self.abilities = [PokemonAbility(**ability) for ability in abilities]
         self.base_experience = base_experience
+        self.cries = cries
         self.forms = [MinimalResource(**form) for form in forms]
         self.game_indices = [
             VersionGameIndex(**game_index) for game_index in game_indices
